@@ -1,0 +1,31 @@
+{
+  "name": "friday",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Friday — a voice-first personal executive assistant",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "cross-env-shell NODE_OPTIONS=\"--experimental-sqlite --no-warnings\" tsx watch server/index.ts",
+    "dev:web": "vite",
+    "build": "tsc -p tsconfig.server.json && vite build",
+    "start": "cross-env-shell NODE_OPTIONS=\"--experimental-sqlite --no-warnings\" tsx server/index.ts",
+    "test": "cross-env-shell NODE_OPTIONS=\"--experimental-sqlite --no-warnings\" vitest run",
+    "test:watch": "cross-env-shell NODE_OPTIONS=\"--experimental-sqlite --no-warnings\" vitest",
+    "typecheck": "tsc --noEmit -p tsconfig.server.json && tsc --noEmit -p tsconfig.web.json",
+    "icons": "node scripts/gen-icons.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8"
+  }
+}
